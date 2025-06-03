@@ -1,0 +1,33 @@
+project 5/
+├── index.html
+├── eslint.config.js
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.ts
+└── src/
+    ├── App.tsx
+    ├── declarations.d.ts
+    ├── index.css
+    ├── main.tsx
+    ├── vite-env.d.ts
+    ├── assets/
+    │   ├── medicaled.mp4
+    │   ├── myphoto.jpeg
+    │   ├── reminderapp.jpg
+    │   └── weatherapp.jpeg
+    ├── components/
+    │   ├── About.tsx
+    │   ├── Contact.tsx
+    │   ├── emailjs.tsx
+    │   ├── Footer.tsx
+    │   ├── Header.tsx
+    │   ├── Hero.tsx
+    │   ├── Projects.tsx
+    │   └── Skills.tsx
+    └── data/
+        ├── projectsData.ts
+        └── skillsData.ts
