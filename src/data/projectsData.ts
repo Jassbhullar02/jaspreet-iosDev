@@ -12,7 +12,7 @@ export const projectsData: Project[] = [
   {
     title: 'Medical Diagnostics, Learning, and Education App',
     description: 'This mobile app is tailored for medical students to enhance their diagnostic and treatment skills through interactive digital cases and gamified learning. It provides real-time feedback and scoring to help users refine their clinical decision-making in a virtual environment. Key features include user authentication, chat functionality, personalized feedback, study cases, educational games, and seamless Firebase integration. Together, these elements create a comprehensive eLearning platform ideal for medical education and skill development.',
-    image: '/src/assets/medicaled.mp4', // Make sure this file is in the public/assets folder
+    image: '/assets/medicaled.mp4', // Now points to public/assets
     category: 'Health & Education',
     technologies: ['Swift', 'UIKit', 'Webkit', 'Core Data', 'Firebase', 'In-App Purchases' ],
     // link: '#'
@@ -20,7 +20,7 @@ export const projectsData: Project[] = [
   {
     title: 'Reminder App-ios',
     description: 'Developed a user-friendly reminder app using Swift and SwiftUI. Users can create, update, and delete reminders with time-based local notifications. Implemented smooth UI, simple task management, and data persistence using UserDefaults. This solo project helped sharpen my skills in SwiftUI, notification handling, and clean UI design.',
-    image: '/src/assets/reminderapp.jpg', // Move this image to public/assets for consistency
+    image: '/assets/reminderapp.jpg', // Now points to public/assets
     category: 'Productivity',
     technologies: ['SwiftUI', 'UiKit', 'Push notification', 'Xcode' ],
     // link: '#'
@@ -28,7 +28,7 @@ export const projectsData: Project[] = [
   {
     title: 'Weather App-ios',
     description: 'A clean and responsive iOS weather app built with Swift and SwiftUI. It shows real-time weather data using API integration, supports location-based forecasts, and features smooth animations with a modern UI. Built using MVVM architecture for maintainability and performance.',
-    image: '/src/assets/weatherapp.jpeg', // Move this image to public/assets for consistency
+    image: '/assets/weatherapp.jpeg', // Now points to public/assets
     category: 'Forecasting',
     technologies: ['Swift', 'UIKit', 'API integration', 'weather map', 'core location'],
     // link: '#'
