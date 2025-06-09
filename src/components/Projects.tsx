@@ -7,6 +7,7 @@ const Projects: React.FC = () => {
   const [activeProject, setActiveProject] = useState(0);
   const [previewMedia, setPreviewMedia] = useState<null | { src: string; type: 'image' | 'video'; alt: string }>(null);
   const [swipeDirection, setSwipeDirection] = useState<'left' | 'right'>('right');
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,6 +43,27 @@ const Projects: React.FC = () => {
   };
 
   const active = projectsData[activeProject];
+
+  // Touch event handlers for swipe gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchEndX - touchStartX;
+    const threshold = 50; // Minimum px to be considered a swipe
+
+    if (diff > threshold) {
+      // Swipe right
+      prevProject();
+    } else if (diff < -threshold) {
+      // Swipe left
+      nextProject();
+    }
+    setTouchStartX(null);
+  };
 
   return (
     <section 
@@ -98,7 +120,11 @@ const Projects: React.FC = () => {
         </div>
         
         {/* Featured Project Showcase */}
-        <div className="mb-20 relative">
+        <div 
+          className="mb-20 relative"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <div
             key={active.title}
             className={`

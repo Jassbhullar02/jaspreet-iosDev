@@ -9,7 +9,14 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
-  
+  {
+    title: 'Medical Diagnostics, Learning, and Education App',
+    description: 'This mobile app is tailored for medical students to enhance their diagnostic and treatment skills through interactive digital cases and gamified learning. It provides real-time feedback and scoring to help users refine their clinical decision-making in a virtual environment. Key features include user authentication, chat functionality, personalized feedback, study cases, educational games, and seamless Firebase integration. Together, these elements create a comprehensive eLearning platform ideal for medical education and skill development.',
+    image: '/assets/medicaled.mp4', // Make sure this file is in the public/assets folder
+    category: 'Health & Education',
+    technologies: ['Swift', 'UIKit', 'Webkit', 'Core Data', 'Firebase', 'In-App Purchases' ],
+    // link: '#'
+  },
   {
     title: 'AI Chat App',
 description: 'Enjoy natural, intelligent conversations with your personal AI chat assistant! 🤖 Whether you want to learn, explore fun facts, or just have someone to talk to — this app is always ready. Key Features: Light & Dark Theme Options, Refresh Chat Anytime, Edit & Copy Messages Easily, Smooth Animations for a Lively Experience. Simple, interactive, and visually engaging — start chatting with your AI companion today!',
@@ -24,14 +31,6 @@ description: 'Enjoy natural, intelligent conversations with your personal AI cha
     image: '/assets/firebase.jpg', // Move this image to public/assets for consistency
     category: 'Authentication',
     technologies: ['Swift', 'Firebase', 'UIKit', 'Core Data'],
-    // link: '#'
-  },
-  {
-    title: 'Medical Diagnostics, Learning, and Education App',
-    description: 'This mobile app is tailored for medical students to enhance their diagnostic and treatment skills through interactive digital cases and gamified learning. It provides real-time feedback and scoring to help users refine their clinical decision-making in a virtual environment. Key features include user authentication, chat functionality, personalized feedback, study cases, educational games, and seamless Firebase integration. Together, these elements create a comprehensive eLearning platform ideal for medical education and skill development.',
-    image: '/assets/medicaled.mp4', // Make sure this file is in the public/assets folder
-    category: 'Health & Education',
-    technologies: ['Swift', 'UIKit', 'Webkit', 'Core Data', 'Firebase', 'In-App Purchases' ],
     // link: '#'
   },
   {

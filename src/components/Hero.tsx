@@ -59,19 +59,17 @@ const Hero: React.FC = () => {
             </a>
           </div>
         </div>
+        {/* Animated scroll indicator */}
+        <div className="flex justify-center items-center mt-16 md:mt-20">
+          <a 
+            href="#about" 
+            className="flex flex-col items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            <span className="mb-2 text-sm font-medium">Scroll Down</span>
+            <ArrowDown size={24} className="animate-bounce" />
+          </a>
+        </div>
       </div>
-      
-      {/* Animated scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a 
-          href="#about" 
-          className="flex flex-col items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-        >
-          <span className="mb-2 text-sm font-medium">Scroll Down</span>
-          <ArrowDown size={24} />
-        </a>
-      </div>
-      
       {/* Background decoration */}
       <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-3xl"></div>
       <div className="absolute -left-20 top-20 w-72 h-72 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-3xl"></div>
