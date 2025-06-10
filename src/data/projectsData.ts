@@ -19,10 +19,18 @@ export const projectsData: Project[] = [
   },
   {
     title: 'AI Chat App',
-description: 'Enjoy natural, intelligent conversations with your personal AI chat assistant! 🤖 Whether you want to learn, explore fun facts, or just have someone to talk to — this app is always ready. Key Features: Light & Dark Theme Options, Refresh Chat Anytime, Edit & Copy Messages Easily, Smooth Animations for a Lively Experience. Simple, interactive, and visually engaging — start chatting with your AI companion today!',
+    description: 'AI Chat App is a sleek and interactive iOS application that enables users to chat seamlessly with an AI assistant. Built with an intuitive interface, the app opens directly to a chat screen where users can ask questions, seek information, or have casual conversations. It includes features like theme customization, chat refresh, message editing, and easy text copying. Smooth animations enhance the user experience, making the interaction feel more natural and engaging. Ideal for quick information lookup, learning, or just having a friendly conversation powered by intelligent AI.',
     image: '/assets/AIchatapp.jpg', // Move this image to public/assets for consistency
     category: 'Communication',
     technologies: ['Swift', 'Firebase', 'UIKit', 'Core Data'],
+    // link: '#'
+  },
+  {
+    title: 'AR Edge detect & Measure',
+    description: 'AR Edge Measure is a smart iOS app that uses ARKit and RealityKit to automatically detect the edges of real-world objects and measure them in real time. As soon as the app is launched, it opens directly into AR view with no manual setup required. It instantly highlights object boundaries—such as tables, boxes, or furniture—and displays accurate dimensions on the screen. Designed for simplicity and speed, the app features a clean, intuitive interface that makes taking quick measurements effortless using the power of augmented reality.',
+    image: '/assets/arapp.jpg',
+    category: 'Augmented Reality',
+    technologies: ['ARKit', 'Swift', 'SceneKit', 'RealityKit' ],
     // link: '#'
   },
   {
@@ -31,14 +39,6 @@ description: 'Enjoy natural, intelligent conversations with your personal AI cha
     image: '/assets/firebase.jpg', // Move this image to public/assets for consistency
     category: 'Authentication',
     technologies: ['Swift', 'Firebase', 'UIKit', 'Core Data'],
-    // link: '#'
-  },
-  {
-    title: 'AR Edge detect & Measure',
-    description: 'An AR-powered app that instantly detects edges and measures objects in real time using your device camera. Just point, detect, and measure – no manual setup needed',
-    image: '/assets/arapp.jpg',
-    category: 'Augmented Reality',
-    technologies: ['ARKit', 'Swift', 'SceneKit', 'RealityKit' ],
     // link: '#'
   },
   {

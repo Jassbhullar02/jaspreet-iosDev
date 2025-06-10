@@ -39,15 +39,17 @@ const About: React.FC = () => {
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="md:w-2/5">
             <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600 shadow-xl mx-auto">
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border border-blue-400 shadow-xl mx-auto transition-all duration-200 active:scale-95 active:shadow-2xl"
+                style={{ boxSizing: 'border-box' }}
+              >
                 <img 
                   src="/assets/myphoto.jpeg" 
                   alt="Jaspreet Singh Bhullar" 
-                  className="w-full h-full object-cover w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top rounded-full transition-transform duration-300 hover:scale-105 active:scale-90"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">2+ Years</span>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-200 rounded-full flex items-center justify-center">
+                <span className="text-blue-800 font-bold">2+ Years</span>
               </div>
             </div>
           </div>

@@ -120,22 +120,21 @@ const Projects: React.FC = () => {
         </div>
         
         {/* Featured Project Showcase */}
-        <div 
-          className="mb-20 relative"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
+        <div className="mb-20 relative">
           <div
             key={active.title}
             className={`
               bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden
               transition-transform duration-500
               ${swipeDirection === 'right' ? 'animate-swipe-in-right' : 'animate-swipe-in-left'}
+              flex
             `}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row w-full h-full">
               {/* Media */}
-              <div className="w-full lg:w-1/2 aspect-video bg-black flex items-center justify-center">
+              <div className="w-full lg:w-1/2 flex items-center justify-center">
                 {active.image.endsWith('.mp4') ? (
                   <video
                     src={active.image}
@@ -144,18 +143,18 @@ const Projects: React.FC = () => {
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover rounded-2xl transition-transform duration-300 hover:scale-105"
                   />
                 ) : (
                   <img
                     src={active.image}
                     alt={active.title}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover rounded-2xl transition-transform duration-300 hover:scale-105"
                   />
                 )}
               </div>
               {/* Text */}
-              <div className="w-full lg:w-1/2 p-8 flex flex-col justify-center">
+              <div className="w-full lg:w-1/2 p-8 flex flex-col justify-center h-full">
                 <span className="mb-4 px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 dark:text-blue-200 dark:bg-blue-900/40 rounded-full self-start">
                   {active.category}
                 </span>
@@ -192,7 +191,7 @@ const Projects: React.FC = () => {
           {projectsData.map((project) => (
             <div 
               key={project.title}
-              className="group bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md transition-all duration-300 flex flex-col min-h-[370px] md:min-h-[420px] hover:-translate-y-2 hover:shadow-2xl"
+              className="group bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md transition-transform duration-300 flex flex-col min-h-[370px] md:min-h-[420px] cursor-pointer hover:scale-105 hover:shadow-2xl"
             >
               <div className="w-full h-60 flex items-center justify-center overflow-hidden group relative">
                 {project.image.endsWith('.mp4') ? (
@@ -202,7 +201,8 @@ const Projects: React.FC = () => {
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-contain rounded-lg transition-none cursor-pointer"
+                    className="w-full h-full object-cover rounded-lg transition-none"
+                    style={{ objectFit: 'cover' }}
                     onClick={() =>
                       setPreviewMedia({
                         src: project.image,
@@ -215,7 +215,8 @@ const Projects: React.FC = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-contain rounded-lg transition-none cursor-pointer"
+                    className="w-full h-full object-cover rounded-lg transition-none"
+                    style={{ objectFit: 'cover' }}
                     onClick={() =>
                       setPreviewMedia({
                         src: project.image,
