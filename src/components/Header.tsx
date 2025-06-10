@@ -56,7 +56,7 @@ const Header: React.FC = () => {
             href="#home" 
             className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
           >
-            Jaspreet Bhullar- iOS Developer<span className="text-blue-600"></span>
+            Jaspreet<span className="text-blue-400"> Bhullar </span>
           </a>
 
           {/* Desktop Navigation */}

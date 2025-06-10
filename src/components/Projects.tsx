@@ -5,9 +5,6 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 const Projects: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState(0);
-  const [previewMedia, setPreviewMedia] = useState<null | { src: string; type: 'image' | 'video'; alt: string }>(null);
-  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right'>('right');
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,77 +30,20 @@ const Projects: React.FC = () => {
   }, []);
 
   const nextProject = () => {
-    setSwipeDirection('right');
     setActiveProject((prev) => (prev + 1) % projectsData.length);
   };
 
   const prevProject = () => {
-    setSwipeDirection('left');
     setActiveProject((prev) => (prev === 0 ? projectsData.length - 1 : prev - 1));
   };
 
   const active = projectsData[activeProject];
-
-  // Touch event handlers for swipe gestures
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX === null) return;
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchEndX - touchStartX;
-    const threshold = 50; // Minimum px to be considered a swipe
-
-    if (diff > threshold) {
-      // Swipe right
-      prevProject();
-    } else if (diff < -threshold) {
-      // Swipe left
-      nextProject();
-    }
-    setTouchStartX(null);
-  };
 
   return (
     <section 
       id="projects" 
       className="py-24 bg-white dark:bg-gray-900"
     >
-      {/* Fullscreen Preview Overlay */}
-      {previewMedia && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-          onClick={() => setPreviewMedia(null)}
-        >
-          <button
-            className="absolute top-6 right-8 text-white text-3xl font-bold z-50"
-            onClick={e => { e.stopPropagation(); setPreviewMedia(null); }}
-            aria-label="Close preview"
-          >
-            &times;
-          </button>
-          <div className="max-w-3xl w-full flex items-center justify-center">
-            {previewMedia.type === 'image' ? (
-              <img
-                src={previewMedia.src}
-                alt={previewMedia.alt}
-                className="max-h-[80vh] max-w-full rounded-lg shadow-2xl"
-                onClick={e => e.stopPropagation()}
-              />
-            ) : (
-              <video
-                src={previewMedia.src}
-                controls
-                autoPlay
-                loop
-                className="max-h-[80vh] max-w-full rounded-lg shadow-2xl bg-black"
-                onClick={e => e.stopPropagation()}
-              />
-            )}
-          </div>
-        </div>
-      )}
       <div 
         ref={sectionRef}
         className="container mx-auto px-4 md:px-6 opacity-0 transition-opacity duration-1000"
@@ -121,20 +61,10 @@ const Projects: React.FC = () => {
         
         {/* Featured Project Showcase */}
         <div className="mb-20 relative">
-          <div
-            key={active.title}
-            className={`
-              bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden
-              transition-transform duration-500
-              ${swipeDirection === 'right' ? 'animate-swipe-in-right' : 'animate-swipe-in-left'}
-              flex
-            `}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            <div className="flex flex-col lg:flex-row w-full h-full">
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+            <div className="flex flex-col lg:flex-row">
               {/* Media */}
-              <div className="w-full lg:w-1/2 flex items-center justify-center">
+              <div className="w-full lg:w-1/2 aspect-video bg-black flex items-center justify-center">
                 {active.image.endsWith('.mp4') ? (
                   <video
                     src={active.image}
@@ -143,18 +73,18 @@ const Projects: React.FC = () => {
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-cover rounded-2xl transition-transform duration-300 hover:scale-105"
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
                   <img
                     src={active.image}
                     alt={active.title}
-                    className="w-full h-full object-cover rounded-2xl transition-transform duration-300 hover:scale-105"
+                    className="w-full h-full object-cover rounded-lg"
                   />
                 )}
               </div>
               {/* Text */}
-              <div className="w-full lg:w-1/2 p-8 flex flex-col justify-center h-full">
+              <div className="w-full lg:w-1/2 p-8 flex flex-col justify-center">
                 <span className="mb-4 px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 dark:text-blue-200 dark:bg-blue-900/40 rounded-full self-start">
                   {active.category}
                 </span>
@@ -191,7 +121,7 @@ const Projects: React.FC = () => {
           {projectsData.map((project) => (
             <div 
               key={project.title}
-              className="group bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md transition-transform duration-300 flex flex-col min-h-[370px] md:min-h-[420px] cursor-pointer hover:scale-105 hover:shadow-2xl"
+              className="group bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all flex flex-col min-h-[370px] md:min-h-[420px]"
             >
               <div className="w-full h-60 flex items-center justify-center overflow-hidden group relative">
                 {project.image.endsWith('.mp4') ? (
@@ -201,32 +131,16 @@ const Projects: React.FC = () => {
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-cover rounded-lg transition-none"
-                    style={{ objectFit: 'cover' }}
-                    onClick={() =>
-                      setPreviewMedia({
-                        src: project.image,
-                        type: 'video',
-                        alt: project.title,
-                      })
-                    }
+                    className="w-full h-full object-contain scale-110 transition-transform duration-500 group-hover:scale-125 group-hover:shadow-2xl rounded-lg"
                   />
                 ) : (
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover rounded-lg transition-none"
-                    style={{ objectFit: 'cover' }}
-                    onClick={() =>
-                      setPreviewMedia({
-                        src: project.image,
-                        type: 'image',
-                        alt: project.title,
-                      })
-                    }
+                    className="w-full h-full object-contain scale-110 transition-transform duration-500 group-hover:scale-125 group-hover:shadow-2xl rounded-lg"
                   />
                 )}
-                {/* Remove overlay on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 rounded-lg"></div>
               </div>
               <div className="p-4 flex flex-col flex-1">
                 <span className="mb-2 px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 dark:text-blue-200 dark:bg-blue-900/40 rounded-full self-start">
@@ -249,23 +163,3 @@ const Projects: React.FC = () => {
 };
 
 export default Projects;
-
-// Add this to your Tailwind CSS config (tailwind.config.js):
-// theme: {
-//   extend: {
-//     animation: {
-//       'swipe-in-right': 'swipe-in-right 0.5s cubic-bezier(0.4,0,0.2,1)',
-//       'swipe-in-left': 'swipe-in-left 0.5s cubic-bezier(0.4,0,0.2,1)',
-//     },
-//     keyframes: {
-//       'swipe-in-right': {
-//         '0%': { opacity: '0', transform: 'translateX(80px)' },
-//         '100%': { opacity: '1', transform: 'translateX(0)' },
-//       },
-//       'swipe-in-left': {
-//         '0%': { opacity: '0', transform: 'translateX(-80px)' },
-//         '100%': { opacity: '1', transform: 'translateX(0)' },
-//       },
-//     },
-//   },
-// },
