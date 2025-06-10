@@ -14,7 +14,7 @@ function App() {
     document.title = 'Jaspreet Singh Bhullar | iOS Developer';
 
     // Smooth scrolling for anchor links (fix: use a named function for removal)
-    function handleAnchorClick(this: HTMLAnchorElement, e: MouseEvent) {
+    function handleAnchorClick(this: HTMLAnchorElement, e: Event) {
       const href = this.getAttribute('href');
       if (href && href.startsWith('#')) {
         const targetId = href.substring(1);
@@ -28,7 +28,7 @@ function App() {
 
     const anchors = Array.from(document.querySelectorAll('a[href^="#"]'));
     anchors.forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick);
+      anchor.addEventListener('click', handleAnchorClick as EventListener);
     });
 
     // Add dark mode class if user prefers dark color scheme
@@ -38,7 +38,7 @@ function App() {
 
     return () => {
       anchors.forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick);
+        anchor.removeEventListener('click', handleAnchorClick as EventListener);
       });
     };
   }, []);
