@@ -46,7 +46,7 @@ const Projects: React.FC = () => {
     >
       <div 
         ref={sectionRef}
-        className="container mx-auto px-4 md:px-6 opacity-0 transition-opacity duration-1000"
+        className="container mx-auto px-4 md:px-6 opacity-0 transition-opacity duration-1000 animate-fade-in"
       >
         <div className="max-w-3xl mx-auto text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
@@ -121,7 +121,7 @@ const Projects: React.FC = () => {
           {projectsData.map((project) => (
             <div 
               key={project.title}
-              className="group bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all flex flex-col min-h-[370px] md:min-h-[420px]"
+              className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-transform duration-300 flex flex-col min-h-[400px] md:min-h-[440px] border border-blue-100 dark:border-blue-900/30 hover:-translate-y-2 relative"
             >
               <div className="w-full h-60 flex items-center justify-center overflow-hidden group relative">
                 {project.image.endsWith('.mp4') ? (
@@ -131,29 +131,30 @@ const Projects: React.FC = () => {
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-contain scale-110 transition-transform duration-500 group-hover:scale-125 group-hover:shadow-2xl rounded-lg"
+                    className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-contain scale-110 transition-transform duration-500 group-hover:scale-125 group-hover:shadow-2xl rounded-lg"
+                    className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-105"
                   />
                 )}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 rounded-lg"></div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-100/20 dark:bg-blue-900/10 rounded-t-2xl"></div>
               </div>
-              <div className="p-4 flex flex-col flex-1">
+              <div className="p-6 flex flex-col flex-1">
                 <span className="mb-2 px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 dark:text-blue-200 dark:bg-blue-900/40 rounded-full self-start">
                   {project.category}
                 </span>
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{project.title}</h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">{project.description}</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3 flex-1">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.technologies.map((tech) => (
-                    <span key={tech} className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 px-2 py-0.5 rounded text-xs">{tech}</span>
+                    <span key={tech} className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 px-2 py-0.5 rounded text-xs font-semibold">{tech}</span>
                   ))}
                 </div>
               </div>
+              {/* Removed the bottom accent bar */}
             </div>
           ))}
         </div>

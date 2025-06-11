@@ -3,104 +3,86 @@ import { Code2, Layers, Database, Cpu, Smartphone, GitBranch, Store, Workflow, G
 
 type Skill = {
   name: string;
+  level: string;
+  description: string;
 };
 
 const SKILLS: Skill[] = [
-  { name: 'Swift' },
-  { name: 'SwiftUI' },
-  { name: 'UIKit' },
-  { name: 'Core Data' },
-  { name: 'iOS Architecture' },
-  { name: 'Xcode' },
-  { name: 'App Store Connect' },
-  { name: 'CI/CD' },
-  { name: 'WebKit' },
+  { name: 'Swift', level: 'Expert', description: 'Deep understanding of protocol-oriented programming, generics, concurrency, and best practices for scalable iOS codebases.' },
+  { name: 'SwiftUI', level: 'Advanced', description: 'Building modern, declarative UIs with custom animations, complex layouts, and state management.' },
+  { name: 'UIKit', level: 'Advanced', description: 'Extensive experience with UIKit, custom controls, and responsive layouts using Auto Layout.' },
+  { name: 'Core Data', level: 'Proficient', description: 'Efficient data persistence, complex relationships, and optimized data management.' },
+  { name: 'iOS Architecture', level: 'Advanced', description: 'Implementing MVVM, Clean Swift, dependency injection, and modular design for maintainable apps.' },
+  { name: 'Xcode', level: 'Expert', description: 'Advanced debugging, performance optimization, and profiling using Xcode tools.' },
+  { name: 'App Store Connect', level: 'Proficient', description: 'Managing app releases, TestFlight beta testing, and App Store optimization.' },
+  { name: 'CI/CD', level: 'Proficient', description: 'Automated build pipelines, testing, and deployment workflows.' },
+  { name: 'WebKit', level: 'Proficient', description: 'Rendering and customizing web content within iOS apps for seamless in-app browsing and UI integration.' },
 ];
+
+const getSkillIcon = (name: string) => {
+  switch (name) {
+    case 'Swift':
+      return <Code2 className="w-7 h-7" />;
+    case 'SwiftUI':
+      return <Layers className="w-7 h-7" />;
+    case 'UIKit':
+      return <Smartphone className="w-7 h-7" />;
+    case 'Core Data':
+      return <Database className="w-7 h-7" />;
+    case 'iOS Architecture':
+      return <Cpu className="w-7 h-7" />;
+    case 'Xcode':
+      return <Code2 className="w-7 h-7" />;
+    case 'App Store Connect':
+      return <Store className="w-7 h-7" />;
+    case 'CI/CD':
+      return <Workflow className="w-7 h-7" />;
+    case 'WebKit':
+      return <Globe className="w-7 h-7" />;
+    default:
+      return <GitBranch className="w-7 h-7" />;
+  }
+};
 
 const Skills: React.FC = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
 
-  const getSkillIcon = (name: string) => {
-    switch (name) {
-      case 'Swift':
-        return <Code2 className="w-6 h-6" />;
-      case 'SwiftUI':
-        return <Layers className="w-6 h-6" />;
-      case 'UIKit':
-        return <Smartphone className="w-6 h-6" />;
-      case 'Core Data':
-        return <Database className="w-6 h-6" />;
-      case 'iOS Architecture':
-        return <Cpu className="w-6 h-6" />;
-      case 'Xcode':
-        return <Code2 className="w-6 h-6" />;
-      case 'App Store Connect':
-        return <Store className="w-6 h-6" />;
-      case 'CI/CD':
-        return <Workflow className="w-6 h-6" />;
-      case 'WebKit':
-        return <Globe className="w-6 h-6" />; // Changed to Globe icon for WebKit
-      default:
-        return <GitBranch className="w-6 h-6" />;
-    }
-  };
-
-  const getSkillDescription = (name: string) => {
-    switch (name) {
-      case 'Swift':
-        return 'Expert in Swift programming with deep understanding of protocol-oriented programming, generics, and concurrency.';
-      case 'SwiftUI':
-        return 'Building modern, declarative UIs with custom animations, complex layouts, and state management.';
-      case 'UIKit':
-        return 'Extensive experience with UIKit, custom controls, and responsive layouts using Auto Layout.';
-      case 'Core Data':
-        return 'Proficient in data persistence, complex relationships, and efficient data management.';
-      case 'iOS Architecture':
-        return 'Implementing clean architectures (MVVM, Clean Swift) with dependency injection and modular design.';
-      case 'Xcode':
-        return 'Advanced debugging, performance optimization, and profiling using Xcode tools.';
-      case 'App Store Connect':
-        return 'Managing app releases, TestFlight beta testing, and App Store optimization.';
-      case 'CI/CD':
-        return 'Setting up automated build pipelines, testing, and deployment workflows.';
-      case 'WebKit':
-        return 'Experienced in using WebKit to render and customize web content within iOS applications for seamless in-app browsing and advanced UI integration';
-      default:
-        return '';
-    }
-  };
-
   return (
     <section id="skills" className="py-24 bg-gray-50 dark:bg-gray-800">
-      <div className="container mx-auto px-3 md:px-5">
+      <div className="container mx-auto px-3 md:px-5 animate-fade-in">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 ref={titleRef} className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 ref={titleRef} className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-6 tracking-tight">
             Skills & Expertise
           </h2>
-          <div className="w-20 h-1.5 bg-blue-600 mx-auto mb-8"></div>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
-            With over 2 years of experience in iOS development, I've mastered various
-            technologies and frameworks to create exceptional mobile applications.
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-full mx-auto mb-8"></div>
+          <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
+            With over <span className="text-blue-700 dark:text-blue-400 font-bold">2 years</span> of iOS development experience, I specialize in building robust, scalable, and visually stunning mobile applications using the latest Apple technologies.
           </p>
         </div>
-        <div ref={skillsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          ref={skillsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+        >
           {SKILLS.map((skill: Skill) => (
-            <div 
+            <div
               key={skill.name}
-              className="group p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-xl transition-transform duration-300 flex flex-col cursor-pointer hover:-translate-y-1 relative overflow-hidden"
+              className="group p-7 bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-2xl transition-transform duration-300 flex flex-col cursor-pointer hover:-translate-y-2 relative overflow-hidden border border-transparent hover:border-blue-200 dark:hover:border-blue-800"
             >
               {/* Light effect background */}
-              <div className="pointer-events-none absolute inset-0 z-0 bg-white/30 dark:bg-blue-900/10 blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
-              <div className="relative z-10">
+              <div className="pointer-events-none absolute inset-0 z-0 bg-white/20 dark:bg-blue-900/10 blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+              <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 group-hover:scale-110 transition-transform duration-300 shadow">
                     {getSkillIcon(skill.name)}
                   </div>
-                  <h3 className="text-xl font-semibold">{skill.name}</h3>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{skill.name}</h3>
+                    <span className="text-xs font-semibold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900 px-2 py-0.5 rounded ml-1">{skill.level}</span>
+                  </div>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {getSkillDescription(skill.name)}
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-2 flex-1">
+                  {skill.description}
                 </p>
               </div>
             </div>

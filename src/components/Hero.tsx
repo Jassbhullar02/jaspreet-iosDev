@@ -27,6 +27,15 @@ const Hero: React.FC = () => {
     };
   }, []);
 
+  // Scroll to #about on scroll indicator click/tap
+  const handleScrollDown = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section 
       id="home" 
@@ -47,7 +56,7 @@ const Hero: React.FC = () => {
       {/* Content */}
       <div 
         ref={sectionRef}
-        className="container mx-auto px-4 md:px-6 py-32 opacity-0 transition-opacity duration-1000 relative z-20"
+        className="container mx-auto px-4 md:px-6 py-32 opacity-0 transition-opacity duration-1000 relative z-20 animate-fade-in"
       >
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
@@ -75,13 +84,22 @@ const Hero: React.FC = () => {
       </div>
       
       {/* Animated scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a 
-          href="#about" 
-          className="flex flex-col items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+        <a
+          href="#about"
+          onClick={handleScrollDown}
+          onTouchEnd={handleScrollDown}
+          className="flex flex-col items-center group transition-colors"
         >
-          <span className="mb-2 text-sm font-medium">Scroll Down</span>
-          <ArrowDown size={24} />
+          <span
+            className="mb-2 text-sm font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-black dark:text-white"
+          >
+            Scroll Down
+          </span>
+          <ArrowDown
+            size={24}
+            className="transition-colors text-black dark:text-white"
+          />
         </a>
       </div>
       
