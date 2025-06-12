@@ -133,11 +133,12 @@ const Projects: React.FC = () => {
                   <video
                     src={active.image}
                     controls
-                    autoPlay
                     muted
-                    loop
                     playsInline
+                    preload="auto"
+                    poster="/assets/video-poster.jpg"
                     className="w-full h-full object-cover rounded-lg cursor-pointer"
+                    onCanPlayThrough={e => (e.currentTarget as HTMLVideoElement).play()}
                     onClick={() =>
                       setPreviewMedia({
                         src: active.image,
@@ -199,7 +200,7 @@ const Projects: React.FC = () => {
           {projectsData.map((project) => (
             <div 
               key={project.title}
-              className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-transform duration-300 flex flex-col min-h-[340px] sm:min-h-[400px] md:min-h-[440px] border border-blue-100 dark:border-blue-900/30 hover:-translate-y-2 relative"
+              className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 flex flex-col min-h-[340px] sm:min-h-[400px] md:min-h-[440px] border border-blue-100 dark:border-blue-900/30 relative"
             >
               <div className="w-full h-44 sm:h-60 flex items-center justify-center overflow-hidden relative">
                 {project.image.endsWith('.mp4') ? (
@@ -207,9 +208,11 @@ const Projects: React.FC = () => {
                     src={project.image}
                     controls
                     muted
-                    loop
                     playsInline
-                    className="w-full h-full object-cover rounded-t-2xl transition-none cursor-pointer"
+                    preload="auto"
+                    poster="/assets/video-poster.jpg"
+                    className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 cursor-pointer"
+                    onCanPlayThrough={e => (e.currentTarget as HTMLVideoElement).play()}
                     onClick={() =>
                       setPreviewMedia({
                         src: project.image,
@@ -222,7 +225,7 @@ const Projects: React.FC = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover rounded-t-2xl transition-none cursor-pointer"
+                    className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 cursor-pointer"
                     onClick={() =>
                       setPreviewMedia({
                         src: project.image,
