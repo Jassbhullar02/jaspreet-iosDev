@@ -123,17 +123,17 @@ const Contact: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-12">
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white dark:bg-gray-900 p-7 rounded-2xl shadow-lg flex flex-col gap-6">
+            <div className="bg-white dark:bg-gray-900 p-5 sm:p-7 rounded-2xl shadow-lg flex flex-col gap-6">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-xl text-blue-700 dark:text-blue-400">
                   <Mail size={28} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
-                  <a href="mailto:jassbhullar1502@gmail.com" className="text-blue-700 dark:text-blue-300 hover:underline text-sm">jassbhullar1502@gmail.com</a>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
+                  <a href="mailto:jassbhullar1502@gmail.com" className="text-blue-700 dark:text-blue-300 hover:underline text-xs sm:text-sm">jassbhullar1502@gmail.com</a>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -141,12 +141,12 @@ const Contact: React.FC = () => {
                   <MapPin size={28} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Location</h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">India, Haryana</p>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Location</h3>
+                  <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">India, Haryana</p>
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Social</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2">Social</h3>
                 <div className="flex space-x-4">
                   <a href="https://www.instagram.com/code_ka_adda/profilecard/?igsh=bjY5cjAxMGVrejRo" className="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center text-white hover:bg-blue-700 transition-colors" aria-label="Instagram">
                     <Instagram className="w-5 h-5" />
@@ -164,11 +164,11 @@ const Contact: React.FC = () => {
 
           {/* Contact Form */}
           <div className="lg:col-span-3">
-            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-10">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send Me a Message</h3>
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 sm:p-10">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6">Send Me a Message</h3>
               {isSubmitted ? (
                 <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6 text-center">
-                  <p className="text-green-800 dark:text-green-200 font-medium">
+                  <p className="text-green-800 dark:text-green-200 font-medium text-sm sm:text-base">
                     Thank you! Your message has been sent successfully.<br />I'll get back to you soon.
                   </p>
                 </div>
@@ -188,7 +188,7 @@ const Contact: React.FC = () => {
                         className={`w-full px-4 py-3 rounded-lg border ${errors.name ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500`}
                         placeholder="Your Name"
                       />
-                      {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
+                      {errors.name && <p className="mt-1 text-xs sm:text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -203,7 +203,7 @@ const Contact: React.FC = () => {
                         className={`w-full px-4 py-3 rounded-lg border ${errors.email ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500`}
                         placeholder="mail@example.com"
                       />
-                      {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
+                      {errors.email && <p className="mt-1 text-xs sm:text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
                     </div>
                   </div>
                   <div>
@@ -233,12 +233,12 @@ const Contact: React.FC = () => {
                       className={`w-full px-4 py-3 rounded-lg border ${errors.message ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       placeholder="Write your message here..."
                     />
-                    {errors.message && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>}
+                    {errors.message && <p className="mt-1 text-xs sm:text-sm text-red-600 dark:text-red-400">{errors.message}</p>}
                   </div>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
+                    className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 w-full sm:w-auto justify-center"
                   >
                     <Send className="w-5 h-5 mr-2" />
                     {isSubmitting ? 'Sending...' : 'Send Message'}
