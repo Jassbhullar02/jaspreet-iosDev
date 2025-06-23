@@ -8,6 +8,21 @@ const Projects: React.FC = () => {
   const touchStartX = useRef<number | null>(null);
   const [previewMedia, setPreviewMedia] = useState<null | { src: string; type: 'image' | 'video'; alt: string }>(null);
 
+  // Safari fullscreen fallback for images/videos
+  const previewRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Prevent background scroll when preview is open (fixes iOS Safari)
+    if (previewMedia) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [previewMedia]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -19,11 +34,9 @@ const Projects: React.FC = () => {
       },
       { threshold: 0.1 }
     );
-
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
@@ -47,14 +60,27 @@ const Projects: React.FC = () => {
     if (touchStartX.current === null) return;
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchEndX - touchStartX.current;
-    const threshold = 50; // Minimum px to be considered a swipe
-
+    const threshold = 50;
     if (diff > threshold) {
       prevProject();
     } else if (diff < -threshold) {
       nextProject();
     }
     touchStartX.current = null;
+  };
+
+  // Safari/iOS fix: request fullscreen for images/videos if available
+  const handlePreviewClick = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation();
+    // Try to request fullscreen on the preview container
+    if (previewRef.current) {
+      // @ts-ignore
+      const el = previewRef.current;
+      if (el.requestFullscreen) el.requestFullscreen();
+      // Safari
+      // @ts-ignore
+      else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    }
   };
 
   const active = projectsData[activeProject];
@@ -67,26 +93,48 @@ const Projects: React.FC = () => {
       {/* Fullscreen Preview Overlay */}
       {previewMedia && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
+          ref={previewRef}
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
           onClick={() => setPreviewMedia(null)}
+          style={{
+            WebkitOverflowScrolling: 'touch',
+            overscrollBehavior: 'contain',
+            touchAction: 'manipulation',
+          }}
         >
           <button
             className="absolute top-6 right-8 text-white text-3xl font-bold z-50"
             onClick={e => { e.stopPropagation(); setPreviewMedia(null); }}
             aria-label="Close preview"
             type="button"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             &times;
           </button>
-          <div className="max-w-3xl w-full flex items-center justify-center">
+          <div
+            className="max-w-3xl w-full flex items-center justify-center"
+            onClick={handlePreviewClick}
+            style={{
+              WebkitTapHighlightColor: 'transparent',
+              outline: 'none',
+            }}
+            tabIndex={-1}
+          >
             {previewMedia.type === 'image' ? (
               <img
                 src={previewMedia.src}
                 alt={previewMedia.alt}
-                className="max-h-[80vh] max-w-[90vw] rounded-lg shadow-2xl"
+                className="max-h-[80vh] max-w-[90vw] rounded-lg shadow-2xl select-none"
                 onClick={e => e.stopPropagation()}
                 draggable={false}
-                style={{ objectFit: 'contain', width: 'auto', height: 'auto' }}
+                style={{
+                  objectFit: 'contain',
+                  width: 'auto',
+                  height: 'auto',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none',
+                  touchAction: 'manipulation',
+                }}
               />
             ) : (
               <video
@@ -94,9 +142,24 @@ const Projects: React.FC = () => {
                 controls
                 autoPlay
                 loop
+                playsInline
+                muted={false}
                 className="max-h-[80vh] max-w-[90vw] rounded-lg shadow-2xl bg-black"
                 onClick={e => e.stopPropagation()}
-                style={{ objectFit: 'contain', width: 'auto', height: 'auto' }}
+                style={{
+                  objectFit: 'contain',
+                  width: 'auto',
+                  height: 'auto',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none',
+                  touchAction: 'manipulation',
+                  background: '#000',
+                }}
+                // Safari fix: force play on click
+                onPlay={e => {
+                  const video = e.currentTarget as HTMLVideoElement;
+                  if (video.paused) video.play();
+                }}
               />
             )}
           </div>
@@ -138,14 +201,15 @@ const Projects: React.FC = () => {
                     preload="auto"
                     poster="/assets/video-poster.jpg"
                     className="w-full h-full object-cover rounded-lg cursor-pointer"
-                    onCanPlayThrough={e => (e.currentTarget as HTMLVideoElement).play()}
-                    onClick={() =>
+                    onClick={e => {
+                      const video = e.currentTarget as HTMLVideoElement;
+                      if (video.paused) video.play();
                       setPreviewMedia({
                         src: active.image,
                         type: 'video',
                         alt: active.title,
-                      })
-                    }
+                      });
+                    }}
                   />
                 ) : (
                   <img
@@ -212,14 +276,27 @@ const Projects: React.FC = () => {
                     preload="auto"
                     poster="/assets/video-poster.jpg"
                     className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 cursor-pointer"
-                    onCanPlayThrough={e => (e.currentTarget as HTMLVideoElement).play()}
-                    onClick={() =>
+                    // Safari fix: ensure video loads and can play on click
+                    onClick={e => {
+                      const video = e.currentTarget as HTMLVideoElement;
+                      // Safari/iOS: force play on click
+                      if (video.paused) {
+                        video.play();
+                      }
                       setPreviewMedia({
                         src: project.image,
                         type: 'video',
                         alt: project.title,
-                      })
-                    }
+                      });
+                    }}
+                    onLoadedMetadata={e => {
+                      // Safari: sometimes needs a play() call after metadata loads
+                      const video = e.currentTarget as HTMLVideoElement;
+                      if (video.paused && video.readyState >= 2) {
+                        // Try to play silently (Safari blocks autoplay with sound)
+                        video.play().catch(() => {});
+                      }
+                    }}
                   />
                 ) : (
                   <img
