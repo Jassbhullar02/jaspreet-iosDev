@@ -196,6 +196,7 @@ const Projects: React.FC = () => {
                   <video
                     src={active.image}
                     controls
+                    autoPlay
                     muted
                     playsInline
                     preload="auto"
@@ -271,31 +272,20 @@ const Projects: React.FC = () => {
                   <video
                     src={project.image}
                     controls
+                    autoPlay
                     muted
                     playsInline
                     preload="auto"
                     poster="/assets/video-poster.jpg"
                     className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 cursor-pointer"
-                    // Safari fix: ensure video loads and can play on click
                     onClick={e => {
                       const video = e.currentTarget as HTMLVideoElement;
-                      // Safari/iOS: force play on click
-                      if (video.paused) {
-                        video.play();
-                      }
+                      if (video.paused) video.play();
                       setPreviewMedia({
                         src: project.image,
                         type: 'video',
                         alt: project.title,
                       });
-                    }}
-                    onLoadedMetadata={e => {
-                      // Safari: sometimes needs a play() call after metadata loads
-                      const video = e.currentTarget as HTMLVideoElement;
-                      if (video.paused && video.readyState >= 2) {
-                        // Try to play silently (Safari blocks autoplay with sound)
-                        video.play().catch(() => {});
-                      }
                     }}
                   />
                 ) : (

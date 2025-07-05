@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Three headings in a row, always aligned, less spacing */}
-          <div className="w-full md:w-auto flex flex-row justify-center items-start gap-1 sm:gap-2 text-center md:text-left">
+          <div className="w-full md:w-auto flex flex-row justify-center items-start gap-1 sm:gap-2 text-left md:text-left">
             {/* Quick Links */}
             <div className="flex flex-col items-center md:items-start min-w-[80px]">
               <h3 className="text-xs sm:text-sm font-semibold mb-0.5 capitalize tracking-wide">Quick links</h3>
