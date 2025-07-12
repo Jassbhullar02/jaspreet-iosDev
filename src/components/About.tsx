@@ -39,20 +39,21 @@ const About: React.FC = () => {
           {/* Profile Image with effect */}
           <div className="md:w-2/5 w-full flex flex-col items-center mb-8 md:mb-0">
             <div className="relative group">
-              <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-400 shadow-2xl mx-auto transition-all duration-300 group-hover:scale-105 group-hover:shadow-blue-200 bg-gradient-to-br from-blue-100 via-white to-blue-200">
+              <div className="w-40 h-40 xs:w-48 xs:h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-400 shadow-2xl mx-auto transition-all duration-300 group-hover:scale-105 group-hover:shadow-blue-200 bg-gradient-to-br from-blue-100 via-white to-blue-200">
                 <img 
                   src="/assets/myphoto.jpeg" 
                   alt="Jaspreet Singh Bhullar" 
-                  className="w-full h-full object-cover object-top rounded-full transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-full object-cover object-center rounded-full transition-transform duration-300 group-hover:scale-110"
+                  style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%' }}
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-20 h-20 sm:w-24 sm:h-24 bg-blue-200 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-gray-900">
-                <span className="text-blue-800 font-bold text-base sm:text-lg">2+ Years</span>
+              <div className="absolute -bottom-4 -right-4 w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 bg-blue-200 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-gray-900">
+                <span className="text-blue-800 font-bold text-xs xs:text-sm sm:text-lg">2+ Years</span>
               </div>
             </div>
             <div className="mt-6 text-center">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Jaspreet Singh Bhullar</h3>
-              <p className="text-blue-600 dark:text-blue-400 font-medium">iOS Developer</p>
+              <h3 className="text-base xs:text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Jaspreet Singh Bhullar</h3>
+              <p className="text-blue-600 dark:text-blue-400 font-medium text-xs xs:text-sm">iOS Developer</p>
             </div>
           </div>
           

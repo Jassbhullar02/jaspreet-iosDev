@@ -196,7 +196,6 @@ const Projects: React.FC = () => {
                   <video
                     src={active.image}
                     controls
-                    autoPlay
                     muted
                     playsInline
                     preload="auto"
@@ -267,7 +266,7 @@ const Projects: React.FC = () => {
               key={project.title}
               className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 flex flex-col min-h-[340px] sm:min-h-[400px] md:min-h-[440px] border border-blue-100 dark:border-blue-900/30 relative"
             >
-              <div className="w-full h-44 sm:h-60 flex items-center justify-center overflow-hidden relative">
+              <div className="w-full aspect-[16/10] sm:aspect-[16/9] flex items-center justify-center overflow-hidden relative">
                 {project.image.endsWith('.mp4') ? (
                   <video
                     src={project.image}
@@ -278,21 +277,34 @@ const Projects: React.FC = () => {
                     preload="auto"
                     poster="/assets/video-poster.jpg"
                     className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 cursor-pointer"
+                    // Safari fix: ensure video loads and can play on click
                     onClick={e => {
                       const video = e.currentTarget as HTMLVideoElement;
-                      if (video.paused) video.play();
+                      // Safari/iOS: force play on click
+                      if (video.paused) {
+                        video.play();
+                      }
                       setPreviewMedia({
                         src: project.image,
                         type: 'video',
                         alt: project.title,
                       });
                     }}
+                    onLoadedMetadata={e => {
+                      // Safari: sometimes needs a play() call after metadata loads
+                      const video = e.currentTarget as HTMLVideoElement;
+                      if (video.paused && video.readyState >= 2) {
+                        // Try to play silently (Safari blocks autoplay with sound)
+                        video.play().catch(() => {});
+                      }
+                    }}
                   />
                 ) : (
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 cursor-pointer"
+                    className="w-full h-full object-cover object-center rounded-t-2xl transition-transform duration-500 cursor-pointer"
+                    style={{ aspectRatio: '16/10', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
                     onClick={() =>
                       setPreviewMedia({
                         src: project.image,

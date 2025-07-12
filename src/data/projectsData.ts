@@ -22,7 +22,7 @@ export const projectsData: Project[] = [
     description: 'AI Chat App is a sleek and interactive iOS application that enables users to chat seamlessly with an AI assistant. Built with an intuitive interface, the app opens directly to a chat screen where users can ask questions, seek information, or have casual conversations. It includes features like theme customization, chat refresh, message editing, and easy text copying. Smooth animations enhance the user experience, making the interaction feel more natural and engaging. Ideal for quick information lookup, learning, or just having a friendly conversation powered by intelligent AI.',
     image: '/assets/AIchatapp.jpg', // Move this image to public/assets for consistency
     category: 'Communication',
-    technologies: ['Swift', 'Firebase', 'UIKit', 'Core Data'],
+    technologies: ['Swift', 'OpenAI API', 'UIKit', 'Custom Animations',  'Dark Mode Support'],
     // link: '#'
   },
   {
@@ -58,36 +58,4 @@ export const projectsData: Project[] = [
     // link: '#'
   },
 
-//   {
-//     title: 'Weather App-ios',
-//     description: 'An enterprise retail management system with inventory tracking, sales analytics, and staff management features. Includes barcode scanning and POS integration.',
-//     image: 'src/assets/weatherapp.jpeg',
-//     category: 'Forecasting',
-//     technologies: ['Swift', 'UIKit', 'API integration', 'weather map', 'core location'],
-//     link: '#'
-//   },
-  // {
-  //   title: 'CulinaryCompanion',
-  //   description: 'A recipe and meal planning app with smart shopping lists, nutritional information, and cooking timers. Features offline mode and ingredient substitution suggestions.',
-  //   image: 'https://images.pexels.com/photos/1660030/pexels-photo-1660030.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  //   category: 'Food & Drink',
-  //   technologies: ['SwiftUI', 'Core Data', 'Vision', 'Firebase', 'Alamofire'],
-  //   link: '#'
-  // },
-  // {
-  //   title: 'UrbanExplorer',
-  //   description: 'A city guide app with location-based recommendations, interactive maps, and AR features for discovering points of interest. Includes offline maps and user reviews.',
-  //   image: 'https://images.pexels.com/photos/2129796/pexels-photo-2129796.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  //   category: 'Travel',
-  //   technologies: ['Swift', 'MapKit', 'ARKit', 'Core Location', 'CloudKit'],
-  //   link: '#'
-  // },
-  // {
-  //   title: 'SecureMessenger',
-  //   description: 'An end-to-end encrypted messaging app with self-destructing messages, authentication options, and media sharing. Features biometric authentication and privacy controls.',
-  //   image: 'https://images.pexels.com/photos/193003/pexels-photo-193003.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  //   category: 'Communication',
-  //   technologies: ['Swift', 'Realm', 'CryptoKit', 'Local Authentication', 'Push Notifications'],
-  //   link: '#'
-  // }
 ];
