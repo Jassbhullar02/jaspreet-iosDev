@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface NavItem {
   label: string;
@@ -16,8 +16,12 @@ const navItems: NavItem[] = [
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    // Always set dark mode
+    document.documentElement.classList.add('dark');
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,18 +32,7 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
   const toggleMenu = () => setIsOpen(!isOpen);
-  
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
-
   const closeMenu = () => setIsOpen(false);
 
   return (
@@ -70,24 +63,10 @@ const Header: React.FC = () => {
                 {item.label}
               </a>
             ))}
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
-              aria-label="Toggle dark mode"
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
           </nav>
 
           {/* Mobile Navigation Toggle */}
           <div className="flex items-center md:hidden">
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 mr-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
-              aria-label="Toggle dark mode"
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
             <button
               onClick={toggleMenu}
               className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"

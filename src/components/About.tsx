@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
+
 const About: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -33,82 +34,70 @@ const About: React.FC = () => {
     >
       <div 
         ref={sectionRef}
-        className="container mx-auto px-4 md:px-6 opacity-0 transition-opacity duration-1000 animate-fade-in"
+        className="container mx-auto px-4 md:px-6 opacity-0 transition-opacity duration-1000"
       >
-        <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-center">
-          {/* Profile Image with effect */}
-          <div className="md:w-2/5 w-full flex flex-col items-center mb-8 md:mb-0">
-            <div className="relative group">
-              <div className="w-40 h-40 xs:w-48 xs:h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-400 shadow-2xl mx-auto transition-all duration-300 group-hover:scale-105 group-hover:shadow-blue-200 bg-gradient-to-br from-blue-100 via-white to-blue-200">
+        <div className="flex flex-col md:flex-row gap-12 items-center">
+          <div className="md:w-2/5">
+            <div className="relative flex flex-col items-center">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-blue-500 shadow-2xl flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-700 to-blue-400 mx-auto overflow-hidden">
                 <img 
                   src="/assets/myphoto.jpeg" 
                   alt="Jaspreet Singh Bhullar" 
-                  className="w-full h-full object-cover object-center rounded-full transition-transform duration-300 group-hover:scale-110"
-                  style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%' }}
+                  className="w-full h-full object-cover object-top rounded-full border-4 border-white dark:border-gray-900 shadow-lg"
+                  style={{ background: 'linear-gradient(to bottom right, #1e293b, #3b82f6)' }}
                 />
+                {/* No tag/bubble */}
+                <div className="absolute -inset-2 rounded-full border-4 border-blue-400 opacity-30 pointer-events-none"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-t from-blue-900/30 to-transparent pointer-events-none"></div>
               </div>
-              <div className="absolute -bottom-4 -right-4 w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 bg-blue-200 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-gray-900">
-                <span className="text-blue-800 font-bold text-xs xs:text-sm sm:text-lg">2+ Years</span>
+              <div className="mt-6 text-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-1">Jaspreet Singh Bhullar</h2>
+                <div className="text-blue-400 font-semibold text-base md:text-lg">iOS Developer</div>
               </div>
-            </div>
-            <div className="mt-6 text-center">
-              <h3 className="text-base xs:text-lg sm:text-2xl font-bold text-gray-900 dark:text-white">Jaspreet Singh Bhullar</h3>
-              <p className="text-blue-600 dark:text-blue-400 font-medium text-xs xs:text-sm">iOS Developer</p>
             </div>
           </div>
           
-          {/* About Content */}
-          <div className="md:w-3/5 w-full">
+          <div className="md:w-3/5">
             <div className="mb-8">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                 About Me
               </h2>
-              <div className="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-full mb-8"></div>
+              <div className="w-20 h-1.5 bg-blue-600 mb-8"></div>
               
-              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed font-medium">
-                Hi, I'm <span className="font-bold text-blue-600 dark:text-blue-400">Jaspreet Singh Bhullar</span>, a passionate iOS Developer with <span className="font-semibold text-blue-700 dark:text-blue-300">2+ years</span> of experience building scalable, user-centric iPhone applications. I specialize in <span className="font-semibold">Swift, SwiftUI, and modern Apple frameworks</span>, always focusing on clean architecture, performance, and delightful user experiences.
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+               Hi, I'm Jaspreet Singh Bhullar, a passionate and detail-oriented iOS Developer with over a years of experience building scalable and user-friendly iPhone applications. I specialize in Swift, SwiftUI, and modern Apple development frameworks, with a strong focus on performance, clean architecture, and great user experience.
               </p>
               
-              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                My approach blends creative UI/UX design with robust backend integration, following MVVM architecture, best practices, and efficient version control with Git. I’ve delivered a wide range of apps—from productivity tools to API-driven platforms—always striving for maintainable code and seamless interfaces.
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                My development approach blends creative UI design with robust backend integration, following MVVM architecture, best practices, and efficient version control with Git. I’ve worked on a wide range of apps — from productivity tools to API-driven platforms — always striving to deliver clean, maintainable code and seamless user interfaces.
               </p>
               
-              <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                I’m constantly exploring new technologies in the Apple ecosystem and love transforming ideas into real-world applications. <span className="font-semibold text-blue-600 dark:text-blue-400">Let’s build something great together!</span>
+              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                I’m constantly exploring new technologies in the Apple ecosystem and love transforming ideas into real-world applications.
+
+Let’s build something great!
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
-              <div className="flex items-start gap-3">
-                <span className="inline-block w-10 h-10 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-xl flex items-center justify-center text-xl font-bold">🎓</span>
-                <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">Education</h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">B.Sc in Computer Science<br />Kurukshetra University</p>
-                </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Education</h3>
+                <p className="text-gray-700 dark:text-gray-300">B.Sc in computer science<br />Kurukshetra University</p>
               </div>
               
-              <div className="flex items-start gap-3">
-                <span className="inline-block w-10 h-10 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-xl flex items-center justify-center text-xl font-bold">📍</span>
-                <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">Location</h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">India</p>
-                </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Location</h3>
+                <p className="text-gray-700 dark:text-gray-300">India</p>
               </div>
               
-              <div className="flex items-start gap-3">
-                <span className="inline-block w-10 h-10 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-xl flex items-center justify-center text-xl font-bold">✉️</span>
-                <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">Email</h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">jassbhullar1502@gmail.com</p>
-                </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Email</h3>
+                <p className="text-gray-700 dark:text-gray-300">jassbhullar1502@gmail.com</p>
               </div>
               
-              <div className="flex items-start gap-3">
-                <span className="inline-block w-10 h-10 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-xl flex items-center justify-center text-xl font-bold">🌐</span>
-                <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1">Languages</h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">English, Punjabi, Hindi</p>
-                </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Languages</h3>
+                <p className="text-gray-700 dark:text-gray-300">English, Punjabi, Hindi</p>
               </div>
             </div>
           </div>

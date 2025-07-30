@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom dark mode theme (excluding .hero-bg) */
+html.dark body:not(.hero-bg) {
+  background: linear-gradient(135deg, #582465 0%, #511943 50%, #582465 100%);
+  /* fallback for browsers that don't support gradients */
+  background-color: #311b38;
+}
+
+/* Custom animations should be added in tailwind.config.js under theme.extend */
+
+/* Optional: Add a subtle animated overlay for extra effect */
+html.dark body:not(.hero-bg)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    120deg,
+    582465(0,0,0,0) 0px,
+    582465(0,0,0,0) 8px,
+    582465a(255,255,255,0.02) 12px,
+    582465(0,0,0,0) 20px
+  );
+  opacity: 0.5;
+  animation: darkThemeOverlayMove 12s linear infinite;
+}
+
+@keyframes darkThemeOverlayMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
+}

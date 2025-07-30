@@ -12,33 +12,32 @@ function App() {
   useEffect(() => {
     // Update page title
     document.title = 'Jaspreet Singh Bhullar | iOS Developer';
-
-    // Smooth scrolling for anchor links (fix: use a named function for removal)
-    function handleAnchorClick(this: HTMLAnchorElement, e: Event) {
-      const href = this.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        const targetId = href.substring(1);
-        const targetElement = document.getElementById(targetId);
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(this: HTMLAnchorElement, e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href')?.substring(1);
+        const targetElement = document.getElementById(targetId || '');
+        
         if (targetElement) {
-          e.preventDefault();
-          targetElement.scrollIntoView({ behavior: 'smooth' });
+          window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: 'smooth'
+          });
         }
-      }
-    }
-
-    const anchors = Array.from(document.querySelectorAll('a[href^="#"]'));
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick as EventListener);
+      });
     });
-
+    
     // Add dark mode class if user prefers dark color scheme
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.classList.add('dark');
     }
-
+    
     return () => {
-      anchors.forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick as EventListener);
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.removeEventListener('click', function() {});
       });
     };
   }, []);

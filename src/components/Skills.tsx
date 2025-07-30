@@ -57,7 +57,7 @@ const Skills: React.FC = () => {
           </h2>
           <div className="w-20 sm:w-24 h-1.5 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-full mx-auto mb-8"></div>
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 font-medium">
-            With over <span className="text-blue-700 dark:text-blue-400 font-bold">2 years</span> of iOS development experience, I specialize in building robust, scalable, and visually stunning mobile applications using the latest Apple technologies.
+            With over <span className="text-blue-700 dark:text-blue-400 font-bold">a years</span> of iOS development experience, I specialize in building robust, scalable, and visually stunning mobile applications using the latest Apple technologies.
           </p>
         </div>
         <div
