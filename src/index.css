@@ -4,9 +4,9 @@
 
 /* Custom dark mode theme (excluding .hero-bg) */
 html.dark body:not(.hero-bg) {
-  background: linear-gradient(135deg, #582465 0%, #511943 50%, #582465 100%);
+  background: linear-gradient(135deg, #020d36 0%, #020d36 50%, #020d36 100%);
   /* fallback for browsers that don't support gradients */
-  background-color: #311b38;
+  background-color: #020d36;
 }
 
 /* Custom animations should be added in tailwind.config.js under theme.extend */
